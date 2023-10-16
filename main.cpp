@@ -74,15 +74,27 @@ private:
 };
 
 
-int main()
-{
-    string input;
+int main() {
+    string input, user, filepath;
     vector<bool> results;
-    ifstream file("C:\\Users\\HP\\CLionProjects\\3rdcourse\\SP_lab1_c++\\input.txt");
+    ifstream file("..\\input.txt");
     if (!file.is_open())
     {
-        cout << "Opening error." << endl;
-        return 1;
+        cout << "Opening error. Print 'yes' to continue, print 'no' to exit: \n" << endl;
+        do {
+            cin >> user;
+            if (user == "yes") {
+                cout << "Enter the file path: ";
+                cin >> filepath;
+                ifstream file(filepath);
+                break;
+            } else if (user == "no") {
+                cout << "End." << endl;
+                return 0;
+            } else {
+                cout << "Invalid input. Please enter 'yes' or 'no'." << endl;
+        }
+        } while (true);
     }
 
     vector<char> abeceda;
@@ -108,14 +120,14 @@ int main()
 
 vector<char> el(const vector<tuple<char, char>>& endStates, char i)
 {
-    vector<char> res;
+    vector<char> results;
     for (int j = 0; j < endStates.size(); j++) {
         const tuple<char, char>& item = endStates[j];
         if (get<0>(item) == i) {
-            res.push_back(get<1>(item));
+            results.push_back(get<1>(item));
         }
     }
-    return res;
+    return results;
 }
 
 char toChar(int num) {
