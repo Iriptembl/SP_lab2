@@ -84,7 +84,7 @@ int main() {
         do {
             cin >> user;
             if (user == "yes") {
-                cout << "Enter the file path: ";
+                cout << "Enter the file path:";
                 cin >> filepath;
                 ifstream file(filepath);
                 break;
